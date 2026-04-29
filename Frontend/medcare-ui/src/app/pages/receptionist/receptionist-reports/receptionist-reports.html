@@ -1,0 +1,72 @@
+<div class="card">
+  <h2 class="h2">Operational snapshot</h2>
+
+  @if (loading()) {
+    <p class="muted">Loading…</p>
+  } @else if (error()) {
+    <div class="banner banner--err">{{ error() }}</div>
+  } @else {
+    <ul class="list">
+      <li>
+        <strong>Patients on file</strong>
+        <span class="meta">{{ totalPatients() }} total</span>
+      </li>
+      <li>
+        <strong>Appointments pending</strong>
+        <span class="meta">{{ pendingAppts() }} in current page window</span>
+      </li>
+      <li>
+        <strong>Appointments confirmed</strong>
+        <span class="meta">{{ confirmedAppts() }} in current page window</span>
+      </li>
+      <li>
+        <strong>Open invoices</strong>
+        <span class="meta">{{ openInvoices() }} with status PENDING</span>
+      </li>
+    </ul>
+
+    <hr />
+    <h3 class="h2">Upload lab report by patient</h3>
+    <div class="filter-bar" style="border-bottom: none; padding-left: 0; padding-right: 0">
+      <select (change)="setPatient($any($event.target).value)">
+        <option value="">Select patient</option>
+        @for (p of patients(); track p.id) {
+          <option [value]="p.id">{{ p.label }}</option>
+        }
+      </select>
+      <input type="file" (change)="setFile($event)" />
+      <button type="button" class="btn btn--ghost" [disabled]="uploading()" (click)="upload()">
+        {{ uploading() ? 'Uploading…' : 'Upload' }}
+      </button>
+    </div>
+    @if (uploadMessage()) {
+      <p class="muted">{{ uploadMessage() }}</p>
+    }
+
+    <h3 class="h2">Uploaded lab reports</h3>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Patient ID</th>
+            <th>File</th>
+            <th>Uploaded</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (r of reports(); track r.id) {
+            <tr>
+              <td>{{ r.patientId ?? '—' }}</td>
+              <td>{{ r.fileName ?? 'report' }}</td>
+              <td>{{ r.uploadedAt ? (r.uploadedAt | date: 'medium') : '—' }}</td>
+              <td>
+                <button type="button" class="btn-link" (click)="download(r)">Download</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

@@ -1,0 +1,35 @@
+<div class="page">
+  <div class="breadcrumb">
+    <a routerLink="/admin/clinics">Clinics</a>
+    <span>/</span>
+    <span>{{ isCreate() ? 'New' : 'Edit' }}</span>
+  </div>
+
+  <h2 class="h2">{{ isCreate() ? 'Add clinic' : 'Edit clinic' }}</h2>
+
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="save()" class="card">
+    <label>
+      <span>Name</span>
+      <input type="text" formControlName="name" autocomplete="organization" />
+    </label>
+    <label>
+      <span>Location</span>
+      <input type="text" formControlName="location" />
+    </label>
+    <label>
+      <span>Contact number</span>
+      <input type="tel" formControlName="contactNumber" />
+    </label>
+    <div class="actions">
+      <button type="submit" class="btn-primary" [disabled]="form.invalid">Save</button>
+      <a routerLink="/admin/clinics" class="btn-ghost">Cancel</a>
+      @if (!isCreate()) {
+        <button type="button" class="btn-danger" (click)="remove()">Delete</button>
+      }
+    </div>
+  </form>
+</div>

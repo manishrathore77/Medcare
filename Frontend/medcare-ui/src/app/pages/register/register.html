@@ -1,0 +1,135 @@
+<div class="register-page">
+  <div class="register-bg" aria-hidden="true"></div>
+
+  <main class="register-shell">
+    <header class="brand">
+      <div class="brand-mark">+</div>
+      <div class="brand-text">
+        <span class="brand-name">Medcare</span>
+        <span class="brand-tagline">Healthcare, simplified</span>
+      </div>
+    </header>
+
+    <section class="card" aria-labelledby="register-heading">
+      <h1 id="register-heading" class="title">Create your patient account</h1>
+      <p class="subtitle">
+        Join to book visits and manage your health information.
+        <span class="muted">Already have an account? <a routerLink="/login">Sign in</a></span>
+      </p>
+
+      @if (success()) {
+        <div class="banner banner--ok" role="status">
+          {{ serverMessage() }}
+          <div class="success-actions">
+            <a routerLink="/patient/dashboard" class="link-btn">Open patient dashboard</a>
+            <a routerLink="/login" class="link-muted">Back to sign in</a>
+          </div>
+        </div>
+      } @else if (serverMessage()) {
+        <div class="banner banner--err" role="alert">
+          {{ serverMessage() }}
+        </div>
+      }
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="form" novalidate>
+        <fieldset class="fieldset">
+          <legend>Account</legend>
+          <div class="row two">
+            <label class="field">
+              <span class="label">Username</span>
+              <input type="text" formControlName="username" autocomplete="username" />
+              @if (fieldError('username')) {
+                <span class="hint hint--err">{{ fieldError('username') }}</span>
+              }
+            </label>
+            <label class="field">
+              <span class="label">Email</span>
+              <input type="email" formControlName="email" autocomplete="email" />
+              @if (fieldError('email')) {
+                <span class="hint hint--err">{{ fieldError('email') }}</span>
+              }
+            </label>
+          </div>
+          <div class="row two">
+            <label class="field">
+              <span class="label">Password</span>
+              <input type="password" formControlName="password" autocomplete="new-password" />
+              @if (fieldError('password')) {
+                <span class="hint hint--err">{{ fieldError('password') }}</span>
+              }
+            </label>
+            <label class="field">
+              <span class="label">Confirm password</span>
+              <input type="password" formControlName="confirmPassword" autocomplete="new-password" />
+              @if (passwordMismatch()) {
+                <span class="hint hint--err">Passwords do not match</span>
+              }
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend>Your details</legend>
+          <div class="row two">
+            <label class="field">
+              <span class="label">First name</span>
+              <input type="text" formControlName="firstName" autocomplete="given-name" />
+              @if (fieldError('firstName')) {
+                <span class="hint hint--err">{{ fieldError('firstName') }}</span>
+              }
+            </label>
+            <label class="field">
+              <span class="label">Last name</span>
+              <input type="text" formControlName="lastName" autocomplete="family-name" />
+              @if (fieldError('lastName')) {
+                <span class="hint hint--err">{{ fieldError('lastName') }}</span>
+              }
+            </label>
+          </div>
+          <details class="optional-block">
+            <summary>Optional profile fields</summary>
+            <div class="row two">
+              <label class="field">
+                <span class="label">Phone</span>
+                <input type="tel" formControlName="phone" autocomplete="tel" />
+              </label>
+              <label class="field">
+                <span class="label">Gender</span>
+                <select formControlName="gender">
+                  <option value="">Prefer not to say</option>
+                  <option value="F">Female</option>
+                  <option value="M">Male</option>
+                  <option value="Other">Other</option>
+                </select>
+              </label>
+            </div>
+            <label class="field">
+              <span class="label">Date of birth</span>
+              <input type="date" formControlName="dob" />
+            </label>
+            <label class="field">
+              <span class="label">Address</span>
+              <input type="text" formControlName="address" autocomplete="street-address" />
+            </label>
+            <label class="field">
+              <span class="label">Emergency contact</span>
+              <input type="text" formControlName="emergencyContact" />
+            </label>
+          </details>
+        </fieldset>
+
+        <button type="submit" class="btn-primary" [disabled]="submitting()">
+          @if (submitting()) {
+            Creating account…
+          } @else {
+            Create account
+          }
+        </button>
+      </form>
+    </section>
+
+    <footer class="foot">
+      <span>Medcare UI · Angular 20</span>
+    </footer>
+  </main>
+</div>

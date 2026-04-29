@@ -1,0 +1,44 @@
+<div class="patient-shell">
+  <aside class="shell-rail" aria-label="Primary navigation">
+    <a class="shell-rail__brand" routerLink="/patient/dashboard" title="Medcare home">+</a>
+    <nav class="rail-nav" aria-label="Patient modules">
+      <a
+        routerLink="/patient/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        title="Dashboard"
+        aria-label="Dashboard"
+      >
+        <span class="material-symbols-outlined">dashboard</span>
+      </a>
+      <a routerLink="/patient/appointments/book" routerLinkActive="active" title="Book appointment" aria-label="Book appointment">
+        <span class="material-symbols-outlined">calendar_add_on</span>
+      </a>
+      <a routerLink="/patient/appointments/history" routerLinkActive="active" title="Appointment history" aria-label="Appointment history">
+        <span class="material-symbols-outlined">history</span>
+      </a>
+      <a routerLink="/patient/medicines" routerLinkActive="active" title="Medicines" aria-label="Medicines">
+        <span class="material-symbols-outlined">prescriptions</span>
+      </a>
+      <a routerLink="/patient/ehr" routerLinkActive="active" title="EHR" aria-label="Electronic health record">
+        <span class="material-symbols-outlined">folder_open</span>
+      </a>
+      <a routerLink="/patient/reports" routerLinkActive="active" title="Reports" aria-label="Reports">
+        <span class="material-symbols-outlined">lab_profile</span>
+      </a>
+      <a routerLink="/patient/telemedicine" routerLinkActive="active" title="Telemedicine" aria-label="Telemedicine">
+        <span class="material-symbols-outlined">video_call</span>
+      </a>
+      <a routerLink="/patient/profile" routerLinkActive="active" title="Profile" aria-label="Profile">
+        <span class="material-symbols-outlined">person</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="shell-main">
+    <app-top-bar [moduleName]="'Patient'" [title]="topTitle()" />
+    <div class="shell-content">
+      <router-outlet />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="doctor-shell">
+  <aside class="shell-rail" aria-label="Doctor navigation">
+    <a class="shell-rail__brand" routerLink="/doctor/dashboard" title="Medcare doctor">+</a>
+    <nav class="rail-nav" aria-label="Doctor modules">
+      <a
+        routerLink="/doctor/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        title="Dashboard"
+        aria-label="Dashboard"
+      >
+        <span class="material-symbols-outlined">dashboard</span>
+      </a>
+      <a routerLink="/doctor/patients" routerLinkActive="active" title="Patients" aria-label="Patients">
+        <span class="material-symbols-outlined">groups</span>
+      </a>
+      <a routerLink="/doctor/appointments" routerLinkActive="active" title="Appointments" aria-label="Appointments">
+        <span class="material-symbols-outlined">event_note</span>
+      </a>
+      <a routerLink="/doctor/availability" routerLinkActive="active" title="Availability" aria-label="Availability">
+        <span class="material-symbols-outlined">calendar_clock</span>
+      </a>
+      <a routerLink="/doctor/ehr" routerLinkActive="active" title="EHR" aria-label="EHR">
+        <span class="material-symbols-outlined">folder_open</span>
+      </a>
+      <a routerLink="/doctor/reports" routerLinkActive="active" title="Reports" aria-label="Reports">
+        <span class="material-symbols-outlined">lab_profile</span>
+      </a>
+      <a routerLink="/doctor/telemedicine" routerLinkActive="active" title="Telemedicine" aria-label="Telemedicine">
+        <span class="material-symbols-outlined">video_call</span>
+      </a>
+      <a routerLink="/doctor/profile" routerLinkActive="active" title="Profile" aria-label="Profile">
+        <span class="material-symbols-outlined">person</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="shell-main">
+    <app-top-bar [moduleName]="'Doctor'" [title]="topTitle()" />
+    <div class="shell-content">
+      <router-outlet />
+    </div>
+  </div>
+</div>

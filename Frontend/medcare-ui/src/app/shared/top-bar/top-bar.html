@@ -1,0 +1,39 @@
+<header class="top-bar">
+  <div class="top-bar__left">
+    <h1 class="top-bar__crumb">
+      @if (moduleName()) {
+        <span class="top-bar__module">{{ moduleName() }}</span>
+        <span class="top-bar__sep" aria-hidden="true">|</span>
+      }
+      <span class="top-bar__page">{{ title() }}</span>
+    </h1>
+  </div>
+
+  <div class="top-bar__search" role="search">
+    <label class="top-bar__search-label">
+      <span class="material-symbols-outlined" aria-hidden="true">search</span>
+      <input type="search" placeholder="Search all" autocomplete="off" />
+    </label>
+  </div>
+
+  <div class="top-bar__right">
+    <button type="button" class="top-bar__icon-btn" aria-label="Notifications">
+      <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
+      <span class="top-bar__notify-badge">3</span>
+    </button>
+
+    @if (auth.displayName(); as n) {
+      <div class="top-bar__user">
+        <span class="top-bar__avatar" aria-hidden="true">{{ n.charAt(0).toUpperCase() }}</span>
+        <div class="top-bar__meta">
+          <span class="top-bar__name">{{ n }}</span>
+          @if (auth.role(); as r) {
+            <span class="top-bar__role">{{ r }}</span>
+          }
+        </div>
+      </div>
+    }
+
+    <button type="button" class="top-bar__logout" (click)="logout()">Logout</button>
+  </div>
+</header>

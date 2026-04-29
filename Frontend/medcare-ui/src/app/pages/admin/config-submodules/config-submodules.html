@@ -1,0 +1,33 @@
+<h2 class="section-title">Submodule management</h2>
+<p class="section-desc">Map submodules to parent modules. Changes persist instantly in the in-memory JSON model.</p>
+
+<div class="toolbar">
+  <select [ngModel]="moduleId()" (ngModelChange)="moduleId.set($event)">
+    <option value="">Select module…</option>
+    @for (m of rbac.modulesList(); track m.id) {
+      <option [value]="m.id">{{ m.name }}</option>
+    }
+  </select>
+  <input type="text" placeholder="Submodule name" [ngModel]="subName()" (ngModelChange)="subName.set($event)" />
+  <button type="button" class="btn-primary" (click)="add()" [disabled]="!moduleId()">Add submodule</button>
+</div>
+
+<h3 class="subhead">Module → submodules</h3>
+@for (m of rbac.modulesList(); track m.id) {
+  <div class="map-block">
+    <h4>{{ m.name }}</h4>
+    <ul>
+      @for (s of rbac.submodulesForModule(m.id); track s.id) {
+        <li>
+          <span>{{ s.name }}</span>
+          <select [ngModel]="s.moduleId" (ngModelChange)="move(s.id, $event)" class="mini-select">
+            @for (opt of rbac.modulesList(); track opt.id) {
+              <option [value]="opt.id">{{ opt.name }}</option>
+            }
+          </select>
+          <button type="button" class="link danger" (click)="remove(s.id)">Remove</button>
+        </li>
+      }
+    </ul>
+  </div>
+}

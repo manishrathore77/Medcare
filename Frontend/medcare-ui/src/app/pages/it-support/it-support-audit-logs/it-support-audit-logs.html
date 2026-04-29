@@ -1,0 +1,56 @@
+<div class="page">
+  <h1 class="h1">Audit logs</h1>
+
+  @if (error()) {
+    <div class="banner banner--err">{{ error() }}</div>
+  }
+
+  <div class="head-row">
+    <span></span>
+    <button type="button" class="btn btn--ghost" [disabled]="loading()" (click)="refresh()">Refresh</button>
+  </div>
+
+  @if (loading()) {
+    <p class="muted">Loading…</p>
+  } @else {
+    <div class="table-wrap card">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Action</th>
+            <th>Entity</th>
+            <th>Entity id</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (r of rows(); track r.id) {
+            <tr>
+              <td>{{ r.id }}</td>
+              <td>{{ r.userId ?? '—' }}</td>
+              <td>{{ r.action ?? '—' }}</td>
+              <td>{{ r.entityName ?? '—' }}</td>
+              <td>{{ r.entityId ?? '—' }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn-link"
+                  [disabled]="deletingId() === r.id"
+                  (click)="remove(r)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="empty">No audit rows returned.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

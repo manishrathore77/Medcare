@@ -1,0 +1,48 @@
+<div class="page page-shell">
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+
+  <div class="page-header">
+    <h2 class="h2">Medicines</h2>
+    <a routerLink="/admin/pharmacy/medicines/create" class="fab-plus" aria-label="Add medicine">+</a>
+  </div>
+
+  <div class="table-card">
+    <div class="filter-bar">
+      <input type="search" placeholder="Search by name or id" [value]="query()" (input)="setQuery($any($event.target).value)" />
+    </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Batch</th>
+            <th>Expiry</th>
+            <th>Stock</th>
+            <th>Reorder</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (m of filteredRows(); track m.id) {
+            <tr>
+              <td>
+                <a class="link-cell" [routerLink]="['/admin/pharmacy/medicines', m.id]">{{ m.name }}</a>
+              </td>
+              <td>{{ m.batchNo }}</td>
+              <td>{{ m.expiryDate }}</td>
+              <td>{{ m.stockQuantity }}</td>
+              <td>{{ m.reorderLevel }}</td>
+              <td>${{ m.unitPrice | number: '1.2-2' }}</td>
+              <td>
+                <a class="link-muted" [routerLink]="['/admin/pharmacy/medicines', m.id]">Edit</a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

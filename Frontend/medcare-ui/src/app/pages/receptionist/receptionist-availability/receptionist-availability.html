@@ -1,0 +1,21 @@
+<div class="stack">
+  @if (loading()) {
+    <p class="muted">Loading doctors and upcoming visits…</p>
+  } @else if (error()) {
+    <div class="banner banner--err">{{ error() }}</div>
+  } @else {
+    @for (d of doctors(); track d.id) {
+      <section class="card">
+        <h3>{{ d.firstName }} {{ d.lastName }} <span class="sub">{{ d.specialty ?? 'Clinician' }}</span></h3>
+        <p class="hint">Upcoming booked slots (from appointments API).</p>
+        <div class="slots">
+          @for (a of upcomingFor(d.id); track a.id) {
+            <span class="slot">{{ a.appointmentTime | date: 'short' }} · {{ a.appointmentType ?? 'visit' }}</span>
+          } @empty {
+            <span class="empty">No upcoming appointments in the loaded window.</span>
+          }
+        </div>
+      </section>
+    }
+  }
+</div>

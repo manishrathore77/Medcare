@@ -1,0 +1,46 @@
+<div class="page page-shell">
+  <div class="page-header">
+    <h2 class="h2">Patients</h2>
+    <a routerLink="/receptionist/register-patient" class="fab-plus" aria-label="Register patient">+</a>
+  </div>
+
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+
+  <div class="table-card">
+    <div class="filter-bar">
+      <input type="search" placeholder="Search by name or id" [value]="query()" (input)="setQuery($any($event.target).value)" />
+      <select [value]="gender()" (change)="setGender($any($event.target).value)">
+        <option value="ALL">All genders</option>
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
+        <option value="OTHER">Other</option>
+      </select>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Address</th>
+            <th>Insurance</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of filteredRows(); track p.id) {
+            <tr>
+              <td>{{ p.firstName }} {{ p.lastName }}</td>
+              <td>{{ p.gender ?? '—' }}</td>
+              <td>{{ p.dob ?? '—' }}</td>
+              <td>{{ p.address ?? '—' }}</td>
+              <td>{{ p.insuranceProvider ?? '—' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

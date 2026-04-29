@@ -1,0 +1,27 @@
+<div class="submodule-page">
+  <header class="submodule-toolbar mc-card">
+    <div class="submodule-toolbar__text">
+      <h1 class="submodule-toolbar__title">Appointments</h1>
+      <p class="submodule-toolbar__meta">History and scheduling in one place</p>
+    </div>
+    <div class="submodule-toolbar__actions">
+      <a
+        routerLink="/patient/appointments/history"
+        routerLinkActive="submodule-tab--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="submodule-tab"
+        >History</a
+      >
+      <a
+        routerLink="/patient/appointments/book"
+        class="fab-add"
+        routerLinkActive="fab-add--active"
+        title="Book new appointment"
+        aria-label="Book new appointment"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+      </a>
+    </div>
+  </header>
+  <router-outlet />
+</div>

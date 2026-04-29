@@ -1,0 +1,41 @@
+<aside class="hc-sidebar" aria-label="Primary navigation">
+  <a class="hc-sidebar__brand" [routerLink]="brandRouterLink()">
+    <span class="hc-sidebar__logo" aria-hidden="true">
+      <span class="material-symbols-outlined">monitor_heart</span>
+    </span>
+    <span class="hc-sidebar__brand-text">
+      <span class="hc-sidebar__brand-name">HealthCare</span>
+      <span class="hc-sidebar__brand-sub">Clinic Management</span>
+    </span>
+  </a>
+
+  <nav class="hc-sidebar__nav" aria-label="Modules">
+    @for (item of navItems(); track item.path + item.label) {
+      <a
+        class="hc-sidebar__link"
+        [routerLink]="item.path"
+        routerLinkActive="hc-sidebar__link--active"
+        [routerLinkActiveOptions]="item.exact ? { exact: true } : { exact: false }"
+      >
+        <span class="material-symbols-outlined hc-sidebar__link-icon" aria-hidden="true">{{ item.icon }}</span>
+        <span class="hc-sidebar__link-label">{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+
+  <div class="hc-sidebar__footer">
+    <div class="hc-sidebar__user">
+      @if (auth.displayName(); as n) {
+        <span class="hc-sidebar__avatar" aria-hidden="true">{{ n.charAt(0).toUpperCase() }}</span>
+        <div class="hc-sidebar__user-meta">
+          <span class="hc-sidebar__user-name">{{ n }}</span>
+          <span class="hc-sidebar__user-role">{{ roleLabel() }}</span>
+        </div>
+      }
+    </div>
+    <button type="button" class="hc-sidebar__logout" (click)="logout()">
+      <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+      Logout
+    </button>
+  </div>
+</aside>

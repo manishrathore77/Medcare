@@ -1,0 +1,48 @@
+<div class="pharm-page">
+  @if (loadError()) {
+    <div class="banner">{{ loadError() }}</div>
+  }
+
+  <section class="kpi-row">
+    <app-kpi-card
+      label="SKU count"
+      [value]="skuCount() + ''"
+      hint="Medicines in catalog"
+      icon="inventory_2"
+      accent="blue"
+    />
+    <app-kpi-card
+      label="Low stock"
+      [value]="lowStock() + ''"
+      hint="At or below reorder level"
+      trend="Review list"
+      [trendPositive]="lowStock() === 0"
+      icon="warning"
+      accent="amber"
+    />
+  </section>
+
+  <div class="tiles">
+    <a routerLink="/admin/pharmacy/medicines" class="tile">
+      <span class="material-symbols-outlined">pill</span>
+      <div>
+        <strong>Medicines</strong>
+        <span>View, add, and edit stock</span>
+      </div>
+    </a>
+    <a routerLink="/admin/pharmacy/medicines/create" class="tile">
+      <span class="material-symbols-outlined">add_circle</span>
+      <div>
+        <strong>Add medicine</strong>
+        <span>Create a new SKU</span>
+      </div>
+    </a>
+    <a routerLink="/admin/pharmacy/inventory" class="tile">
+      <span class="material-symbols-outlined">receipt_long</span>
+      <div>
+        <strong>Inventory log</strong>
+        <span>Stock movements</span>
+      </div>
+    </a>
+  </div>
+</div>

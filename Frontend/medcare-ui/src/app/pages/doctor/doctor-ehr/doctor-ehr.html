@@ -1,0 +1,100 @@
+<div class="page">
+  <h2 class="h2">Electronic health records</h2>
+  <p class="lead">
+    List and create records via <code>/api/emr/prescriptions</code> and <code>/api/emr/diagnoses</code>. Choose an
+    appointment id from your schedule.
+  </p>
+
+  @if (error()) {
+    <div class="banner banner--err">{{ error() }}</div>
+  }
+  @if (emrMsg()) {
+    <div class="banner banner--ok">{{ emrMsg() }}</div>
+  }
+
+  <div class="grid">
+    <section class="card">
+      <h3>Prescriptions (recent)</h3>
+      <ul class="list">
+        @for (r of prescriptions(); track r.id) {
+          <li>
+            <strong>{{ r.medicineName }}</strong>
+            <span class="meta">Appt #{{ r.appointmentId }} · {{ r.dosage }} · {{ r.frequency }}</span>
+          </li>
+        }
+      </ul>
+
+      <h4>Add prescription</h4>
+      <form [formGroup]="rxForm" (ngSubmit)="saveRx()" class="mini-form">
+        <label>
+          <span>Appointment</span>
+          <select formControlName="appointmentId">
+            <option value="">Select…</option>
+            @for (a of appointments(); track a.id) {
+              <option [value]="a.id">#{{ a.id }} — {{ a.appointmentTime }}</option>
+            }
+          </select>
+        </label>
+        <label>
+          <span>Medicine</span>
+          <input type="text" formControlName="medicineName" />
+        </label>
+        <div class="row">
+          <label>
+            <span>Dosage</span>
+            <input type="text" formControlName="dosage" />
+          </label>
+          <label>
+            <span>Frequency</span>
+            <input type="text" formControlName="frequency" />
+          </label>
+        </div>
+        <label>
+          <span>Duration</span>
+          <input type="text" formControlName="duration" />
+        </label>
+        <button type="submit" class="btn-primary" [disabled]="rxForm.invalid">Save prescription</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h3>Diagnoses (recent)</h3>
+      <ul class="list">
+        @for (d of diagnoses(); track d.id) {
+          <li>
+            <strong>{{ d.diagnosisName }}</strong>
+            <span class="meta">Appt #{{ d.appointmentId }} · {{ d.severity }}</span>
+          </li>
+        }
+      </ul>
+
+      <h4>Add diagnosis</h4>
+      <form [formGroup]="dxForm" (ngSubmit)="saveDx()" class="mini-form">
+        <label>
+          <span>Appointment</span>
+          <select formControlName="appointmentId">
+            <option value="">Select…</option>
+            @for (a of appointments(); track a.id) {
+              <option [value]="a.id">#{{ a.id }} — {{ a.appointmentTime }}</option>
+            }
+          </select>
+        </label>
+        <label>
+          <span>Diagnosis</span>
+          <input type="text" formControlName="diagnosisName" />
+        </label>
+        <div class="row">
+          <label>
+            <span>Severity</span>
+            <input type="text" formControlName="severity" />
+          </label>
+          <label>
+            <span>Notes</span>
+            <input type="text" formControlName="notes" />
+          </label>
+        </div>
+        <button type="submit" class="btn-primary" [disabled]="dxForm.invalid">Save diagnosis</button>
+      </form>
+    </section>
+  </div>
+</div>

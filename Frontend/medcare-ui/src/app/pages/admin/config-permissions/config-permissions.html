@@ -1,0 +1,49 @@
+<h2 class="section-title">Permission management</h2>
+<p class="section-desc">
+  CRUD + custom scopes. Each row links to an API-style scope string (matches backend constants when aligned).
+</p>
+
+<div class="toolbar cols">
+  <select [ngModel]="submoduleId()" (ngModelChange)="submoduleId.set($event)">
+    <option value="">Submodule…</option>
+    @for (s of rbac.submodulesList(); track s.id) {
+      <option [value]="s.id">{{ subLabel(s.id) }} — {{ s.name }}</option>
+    }
+  </select>
+  <input type="text" placeholder="Label" [ngModel]="label()" (ngModelChange)="label.set($event)" />
+  <input type="text" placeholder="Key (e.g. read)" [ngModel]="key()" (ngModelChange)="key.set($event)" />
+  <input type="text" placeholder="Scope string" [ngModel]="scope()" (ngModelChange)="scope.set($event)" />
+  <select [ngModel]="kind()" (ngModelChange)="kind.set($event)">
+    @for (k of kinds; track k) {
+      <option [value]="k">{{ k }}</option>
+    }
+  </select>
+  <button type="button" class="btn-primary" (click)="add()" [disabled]="!submoduleId()">Add permission</button>
+</div>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Submodule</th>
+      <th>Label</th>
+      <th>Key</th>
+      <th>Kind</th>
+      <th>API scope</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (p of rbac.permissionsList(); track p.id) {
+      <tr>
+        <td>{{ subLabel(p.submoduleId) }}</td>
+        <td>{{ p.label }}</td>
+        <td><code>{{ p.key }}</code></td>
+        <td>{{ p.kind }}</td>
+        <td><code class="scope">{{ p.scope }}</code></td>
+        <td class="actions">
+          <button type="button" class="link danger" (click)="remove(p.id)">Delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

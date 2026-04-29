@@ -1,0 +1,13 @@
+@import '../config-modules/config-modules.scss';
+
+.toolbar.cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  align-items: end;
+  gap: 0.5rem;
+}
+
+.scope {
+  font-size: 0.75rem;
+  word-break: break-all;
+}

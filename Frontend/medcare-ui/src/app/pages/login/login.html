@@ -1,0 +1,77 @@
+<div class="login-page">
+  <div class="panel">
+    <header class="head">
+      <div class="logo">M</div>
+      <h1>Medcare</h1>
+    </header>
+
+    @if (demoNote()) {
+      <div class="banner">{{ demoNote() }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <p class="field-label">Sign in as</p>
+      <div class="role-grid">
+        <button
+          type="button"
+          class="role-btn"
+          [class.active]="form.get('portal')?.value === 'PATIENT'"
+          (click)="setPortal('PATIENT')"
+        >
+          Patient
+        </button>
+        <button
+          type="button"
+          class="role-btn"
+          [class.active]="form.get('portal')?.value === 'DOCTOR'"
+          (click)="setPortal('DOCTOR')"
+        >
+          Doctor
+        </button>
+        <button
+          type="button"
+          class="role-btn"
+          [class.active]="form.get('portal')?.value === 'RECEPTIONIST'"
+          (click)="setPortal('RECEPTIONIST')"
+        >
+          Receptionist
+        </button>
+        @if (showAdmin()) {
+          <button
+            type="button"
+            class="role-btn role-btn--admin"
+            [class.active]="form.get('portal')?.value === 'ADMIN'"
+            (click)="setPortal('ADMIN')"
+          >
+            Administrator
+          </button>
+          <button
+            type="button"
+            class="role-btn role-btn--admin"
+            [class.active]="form.get('portal')?.value === 'IT_SUPPORT'"
+            (click)="setPortal('IT_SUPPORT')"
+          >
+            IT Support
+          </button>
+        }
+      </div>
+
+      <input type="hidden" formControlName="portal" />
+
+      <label class="field">
+        <span>Username</span>
+        <input type="text" formControlName="username" autocomplete="username" />
+      </label>
+      <label class="field">
+        <span>Password</span>
+        <input type="password" formControlName="password" autocomplete="current-password" />
+      </label>
+
+      <button type="submit" class="btn">Sign in</button>
+    </form>
+
+    <button type="button" class="link-toggle" (click)="showAdmin.set(!showAdmin())">
+      {{ showAdmin() ? 'Hide staff access' : 'Staff / administrator access' }}
+    </button>
+  </div>
+</div>

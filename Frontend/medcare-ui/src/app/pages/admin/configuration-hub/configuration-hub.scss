@@ -1,0 +1,48 @@
+.hub-head h1 {
+  margin: 0 0 0.35rem;
+  color: var(--mc-green-deep);
+}
+
+.hub-head p {
+  margin: 0 0 1.25rem;
+  color: var(--mc-text-muted);
+  max-width: 800px;
+  line-height: 1.5;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.tabs a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--mc-text-muted);
+  border: 1px solid transparent;
+}
+
+.tabs a:hover {
+  background: var(--mc-green-tint);
+  color: var(--mc-green-deep);
+}
+
+.tabs a.active {
+  background: var(--mc-white);
+  border-color: var(--mc-border);
+  color: var(--mc-green-deep);
+  box-shadow: var(--mc-shadow);
+}
+
+.hub-body {
+  background: var(--mc-white);
+  border: 1px solid var(--mc-border);
+  border-radius: var(--mc-radius);
+  padding: 1.25rem 1.5rem;
+  min-height: 320px;
+}

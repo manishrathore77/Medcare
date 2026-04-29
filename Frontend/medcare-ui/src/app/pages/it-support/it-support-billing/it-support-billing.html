@@ -1,0 +1,72 @@
+<div class="wrap">
+  <h2 class="h2">Billing (read-only)</h2>
+  <p class="sub">Invoices and payment milestones per your IT_SUPPORT scopes.</p>
+
+  @if (loading()) {
+    <p class="muted">Loading…</p>
+  } @else if (error()) {
+    <div class="banner banner--err">{{ error() }}</div>
+  } @else {
+    <section class="card">
+      <h3 class="h3">Invoices</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Appointment</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (b of invoices(); track b.id) {
+              <tr>
+                <td>{{ b.id }}</td>
+                <td>{{ b.appointmentId ?? '—' }}</td>
+                <td>${{ (b.totalAmount ?? 0) | number: '1.2-2' }}</td>
+                <td><span class="pill">{{ b.status ?? '—' }}</span></td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="4" class="empty">No invoices.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3 class="h3">Payments</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Invoice</th>
+              <th>Amount</th>
+              <th>Mode</th>
+              <th>Paid</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (p of payments(); track p.id) {
+              <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.invoiceId ?? '—' }}</td>
+                <td>${{ (p.amount ?? 0) | number: '1.2-2' }}</td>
+                <td>{{ p.paymentMode ?? '—' }}</td>
+                <td>{{ p.paidAt ?? '—' }}</td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="5" class="empty">No payments.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  }
+</div>

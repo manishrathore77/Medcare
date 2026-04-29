@@ -1,0 +1,51 @@
+<div class="page-shell">
+  @if (loadErrors().length > 0 && !loading()) {
+    <div class="banner banner--warn">
+      Some dashboard data could not load: {{ loadErrors().join(' · ') }}
+    </div>
+  }
+
+  @if (loading()) {
+    <p class="muted">Loading dashboard…</p>
+  } @else {
+    <div class="stats-grid">
+      <article class="stat-card">
+        <span class="stat-card__label">Patients on file</span>
+        <span class="stat-card__value">{{ totalPatients() | number }}</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-card__label">Today’s appointments</span>
+        <span class="stat-card__value">{{ todayAppointments() }}</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-card__label">Doctors in directory</span>
+        <span class="stat-card__value">{{ doctorCount() }}</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-card__label">Payments recorded today</span>
+        <span class="stat-card__value">${{ revenueToday() | number: '1.2-2' }}</span>
+      </article>
+    </div>
+
+    <section class="chart-grid">
+      <article class="chart-card">
+        <h3>Upcoming weekly appointments</h3>
+        <div style="height: 260px">
+          <canvas baseChart [data]="appointmentDistChart()" [options]="chartOptions" [type]="'bar'"></canvas>
+        </div>
+      </article>
+      <article class="chart-card">
+        <h3>Payment mode mix</h3>
+        <div style="height: 260px">
+          <canvas baseChart [data]="paymentModeChart()" [options]="chartOptions" [type]="'pie'"></canvas>
+        </div>
+      </article>
+      <article class="chart-card">
+        <h3>Payment status mix</h3>
+        <div style="height: 260px">
+          <canvas baseChart [data]="paymentStatusChart()" [options]="chartOptions" [type]="'pie'"></canvas>
+        </div>
+      </article>
+    </section>
+  }
+</div>

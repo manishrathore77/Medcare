@@ -1,0 +1,134 @@
+<div class="dash page-shell">
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+
+  <section class="kpi-row" aria-label="Summary">
+    <app-kpi-card
+      label="Upcoming visits"
+      [value]="upcomingCount() + ''"
+      hint="Confirmed appointments from today onward"
+      trend="Live data"
+      [trendPositive]="true"
+      icon="event_upcoming"
+      accent="blue"
+    />
+    <app-kpi-card
+      label="Active prescriptions"
+      [value]="rxCount() + ''"
+      hint="Issued under your visits"
+      trend="Live data"
+      [trendPositive]="true"
+      icon="medication"
+      accent="green"
+    />
+    <app-kpi-card
+      label="Lab reports"
+      [value]="reportCount() + ''"
+      hint="Lab module comes after patient phase"
+      trend="Coming soon"
+      [trendPositive]="true"
+      icon="science"
+      accent="violet"
+    />
+    <app-kpi-card
+      label="Messages"
+      value="0"
+      hint="Secure messages (later)"
+      trend="—"
+      [trendPositive]="true"
+      icon="chat"
+      accent="amber"
+    />
+  </section>
+
+  <section class="chart-grid">
+    <article class="chart-card">
+      <h3>Appointments by status</h3>
+      <div style="height: 250px">
+        <canvas baseChart [data]="statusChart()" [options]="chartOptions" [type]="'pie'"></canvas>
+      </div>
+    </article>
+    <article class="chart-card">
+      <h3>Appointments by type</h3>
+      <div style="height: 250px">
+        <canvas baseChart [data]="typeChart()" [options]="chartOptions" [type]="'pie'"></canvas>
+      </div>
+    </article>
+    <article class="chart-card">
+      <h3>Appointments timeline</h3>
+      <div style="height: 250px">
+        <canvas baseChart [data]="timelineChart()" [options]="chartOptions" [type]="'bar'"></canvas>
+      </div>
+    </article>
+    <article class="chart-card">
+      <h3>Messages</h3>
+      <p class="muted">Coming soon</p>
+    </article>
+  </section>
+
+  <div class="dash-grid">
+    <div class="dash-primary">
+      <div class="table-card">
+        <div class="table-toolbar">
+          <span class="table-toolbar__meta">Recent appointments ({{ rows().length }})</span>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Type</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (a of rows(); track a.id) {
+                @let w = formatWhen(a.appointmentTime);
+                <tr>
+                  <td>
+                    <span
+                      class="badge-pill"
+                      [class.badge-pill--ok]="a.status === 'COMPLETED'"
+                      [class.badge-pill--info]="a.status === 'CONFIRMED'"
+                      [class.badge-pill--muted]="a.status !== 'COMPLETED' && a.status !== 'CONFIRMED'"
+                    >
+                      {{ a.status ?? '—' }}
+                    </span>
+                  </td>
+                  <td>
+                    <a class="link-cell" routerLink="/patient/appointments/history">{{ doctorLabel(a.doctorId) }}</a>
+                  </td>
+                  <td>{{ w.date }}</td>
+                  <td>{{ w.time }}</td>
+                  <td>{{ a.appointmentType ?? '—' }}</td>
+                  <td class="actions"></td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <aside class="synopsis" aria-label="Help">
+      <div class="synopsis__head">
+        <span class="material-symbols-outlined" aria-hidden="true">info</span>
+        <h2>Highlights</h2>
+      </div>
+      <section class="synopsis__section">
+        <h3>Patient module</h3>
+        <p>Book visits, view history, update your profile, and review prescriptions tied to appointments.</p>
+      </section>
+    </aside>
+  </div>
+
+  <section class="quick-actions">
+    <a routerLink="/patient/appointments/book" class="qa">Book appointment</a>
+    <a routerLink="/patient/appointments/history" class="qa qa--ghost">View full history</a>
+    <a routerLink="/patient/profile" class="qa qa--ghost">Profile</a>
+  </section>
+</div>

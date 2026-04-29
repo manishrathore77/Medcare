@@ -1,0 +1,41 @@
+<div class="card">
+  <h2 class="h2">Appointments</h2>
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>When</th>
+          <th>Patient</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (a of rows(); track a.id) {
+          @let w = formatWhen(a.appointmentTime);
+          <tr>
+            <td>{{ w.date }}<br /><span class="sub">{{ w.time }}</span></td>
+            <td>
+              @if (a.patientId) {
+                <a [routerLink]="['/doctor/patients', a.patientId]" class="plink">{{ patientLabel(a.patientId) }}</a>
+              } @else {
+                —
+              }
+            </td>
+            <td>{{ a.appointmentType ?? '—' }}</td>
+            <td><span class="pill">{{ a.status ?? '—' }}</span></td>
+            <td>
+              @if (a.status !== 'CANCELLED') {
+                <button type="button" class="btn-cancel" (click)="cancel(a)">Cancel</button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

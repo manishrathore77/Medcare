@@ -1,0 +1,35 @@
+<div class="it-shell">
+  <aside class="shell-rail" aria-label="IT support navigation">
+    <a class="shell-rail__brand shell-rail__brand--it" routerLink="/it-support/dashboard" title="Medcare IT">IT</a>
+    <nav class="rail-nav" aria-label="IT modules">
+      <a
+        routerLink="/it-support/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        title="Dashboard"
+        aria-label="Dashboard"
+      >
+        <span class="material-symbols-outlined">dashboard</span>
+      </a>
+      <a routerLink="/it-support/users" routerLinkActive="active" title="Users" aria-label="Users">
+        <span class="material-symbols-outlined">group</span>
+      </a>
+      <a routerLink="/it-support/audit-logs" routerLinkActive="active" title="Audit logs" aria-label="Audit logs">
+        <span class="material-symbols-outlined">history</span>
+      </a>
+      <a routerLink="/it-support/billing" routerLinkActive="active" title="Billing" aria-label="Billing">
+        <span class="material-symbols-outlined">receipt_long</span>
+      </a>
+      <a routerLink="/it-support/profile" routerLinkActive="active" title="Profile" aria-label="Profile">
+        <span class="material-symbols-outlined">person</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="shell-main">
+    <app-top-bar [moduleName]="'IT Support'" [title]="topTitle()" />
+    <div class="shell-content">
+      <router-outlet />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+.card {
+  background: #fff;
+  border: 1px solid var(--mc-border);
+  border-radius: var(--mc-radius);
+  padding: 1.25rem;
+}
+
+.h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--mc-green-deep);
+}
+
+.lead {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: var(--mc-text-muted);
+  line-height: 1.5;
+}
+
+.muted {
+  font-size: 0.9rem;
+  color: var(--mc-text-muted);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid var(--mc-border);
+}
+
+th {
+  color: var(--mc-text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.pill {
+  background: var(--mc-green-tint);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}

@@ -1,0 +1,15 @@
+<div class="hub">
+  <header class="hub-head">
+    <h1>Configuration hub</h1>
+    <p>RBAC control: modules → submodules → permissions → roles. Data is mock JSON in memory (ready to swap for API).</p>
+  </header>
+  <nav class="tabs">
+    <a routerLink="modules" routerLinkActive="active">Modules</a>
+    <a routerLink="submodules" routerLinkActive="active">Submodules</a>
+    <a routerLink="permissions" routerLinkActive="active">Permissions</a>
+    <a routerLink="roles" routerLinkActive="active">Roles &amp; tree</a>
+  </nav>
+  <div class="hub-body">
+    <router-outlet />
+  </div>
+</div>

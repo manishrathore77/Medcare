@@ -1,0 +1,68 @@
+<h2 class="section-title">Role mapping &amp; access tree</h2>
+<p class="section-desc">
+  Select a role, assign modules, then toggle submodule permissions. Mirrors “scope mapping for APIs” in your diagram.
+</p>
+
+<div class="role-bar">
+  <label>
+    Role
+    <select [ngModel]="selectedRoleId()" (ngModelChange)="selectRole($event)">
+      @for (r of rbac.rolesList(); track r.id) {
+        <option [value]="r.id">{{ r.name }}</option>
+      }
+    </select>
+  </label>
+  @if (role(); as r) {
+    <span class="meta">{{ r.description }}</span>
+    <button type="button" class="link danger" (click)="removeRole()">Delete role</button>
+  }
+</div>
+
+<div class="toolbar">
+  <input type="text" placeholder="New role name" [ngModel]="newRoleName()" (ngModelChange)="newRoleName.set($event)" />
+  <input type="text" placeholder="Description" [ngModel]="newRoleDesc()" (ngModelChange)="newRoleDesc.set($event)" />
+  <button type="button" class="btn-primary" (click)="addRole()">Create role</button>
+</div>
+
+@if (role(); as r) {
+  <h3 class="subhead">Modules assigned to {{ r.name }}</h3>
+  <div class="module-chips">
+    @for (m of rbac.modulesList(); track m.id) {
+      <label class="chip">
+        <input type="checkbox" [checked]="moduleOn(m.id)" (change)="toggleModule(m.id, $any($event.target).checked)" />
+        {{ m.name }}
+      </label>
+    }
+  </div>
+
+  <h3 class="subhead">Tree: module → submodule → permissions</h3>
+  <div class="tree">
+    @for (row of rbac.tree(); track row.module.id) {
+      @if (moduleOn(row.module.id)) {
+        <details class="tree-mod" open>
+          <summary>{{ row.module.name }}</summary>
+          @for (block of row.submodules; track block.submodule.id) {
+            <div class="tree-sub">
+              <div class="tree-sub-title">{{ block.submodule.name }}</div>
+              <ul>
+                @for (p of block.permissions; track p.id) {
+                  <li>
+                    <label class="perm-row">
+                      <input
+                        type="checkbox"
+                        [checked]="permOn(p.id)"
+                        (change)="togglePerm(p.id, $any($event.target).checked)"
+                      />
+                      <span>{{ p.label }}</span>
+                      <code>{{ p.scope }}</code>
+                    </label>
+                  </li>
+                }
+              </ul>
+            </div>
+          }
+        </details>
+      }
+    }
+  </div>
+}

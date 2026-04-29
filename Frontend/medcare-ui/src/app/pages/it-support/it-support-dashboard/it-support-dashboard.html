@@ -1,0 +1,50 @@
+<div class="page-shell">
+  @if (loadErrors().length > 0 && !loading()) {
+    <div class="banner banner--warn">
+      Some metrics could not load: {{ loadErrors().join(' · ') }}
+    </div>
+  }
+
+  @if (loading()) {
+    <p class="muted">Loading…</p>
+  } @else {
+    <div class="stats-grid">
+      <article class="stat-card">
+        <span class="stat-card__label">User accounts</span>
+        <span class="stat-card__value">{{ userCount() }}</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-card__label">Audit log rows</span>
+        <span class="stat-card__value">{{ auditCount() }}</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-card__label">Invoices</span>
+        <span class="stat-card__value">{{ invoiceCount() }}</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-card__label">Payments</span>
+        <span class="stat-card__value">{{ paymentCount() }}</span>
+      </article>
+    </div>
+    <section class="chart-grid">
+      <article class="chart-card">
+        <h3>Users by role</h3>
+        <div style="height: 250px">
+          <canvas baseChart [data]="usersByRoleChart()" [options]="chartOptions" [type]="'pie'"></canvas>
+        </div>
+      </article>
+      <article class="chart-card">
+        <h3>Audit actions</h3>
+        <div style="height: 250px">
+          <canvas baseChart [data]="auditActionChart()" [options]="chartOptions" [type]="'pie'"></canvas>
+        </div>
+      </article>
+      <article class="chart-card">
+        <h3>Audit entities</h3>
+        <div style="height: 250px">
+          <canvas baseChart [data]="auditEntityChart()" [options]="chartOptions" [type]="'bar'"></canvas>
+        </div>
+      </article>
+    </section>
+  }
+</div>

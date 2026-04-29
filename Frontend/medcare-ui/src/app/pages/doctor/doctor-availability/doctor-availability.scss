@@ -1,0 +1,50 @@
+.card {
+  background: #fff;
+  border: 1px solid var(--mc-border);
+  border-radius: var(--mc-radius);
+  padding: 1.25rem;
+}
+
+.h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: var(--mc-green-deep);
+}
+
+.lead {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--mc-text-muted);
+  line-height: 1.5;
+}
+
+.lead code {
+  font-size: 0.8rem;
+}
+
+.muted {
+  font-size: 0.9rem;
+  color: var(--mc-text-muted);
+}
+
+.slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.slot {
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--mc-border);
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+}
+
+.slot.on {
+  background: var(--mc-green);
+  color: #fff;
+  border-color: var(--mc-green);
+}

@@ -1,0 +1,35 @@
+.card {
+  background: #fff;
+  border: 1px solid var(--mc-border);
+  border-radius: var(--mc-radius);
+  padding: 1.5rem;
+  max-width: 32rem;
+}
+
+.h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--mc-green-deep);
+}
+
+.lead {
+  margin: 0 0 1rem;
+  color: var(--mc-text-muted);
+  font-size: 0.95rem;
+}
+
+.btn {
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--mc-border);
+  color: var(--mc-text-muted);
+  font: inherit;
+  cursor: not-allowed;
+}
+
+.hint {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  color: var(--mc-text-muted);
+}

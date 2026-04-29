@@ -1,0 +1,39 @@
+<div class="page">
+  <div class="breadcrumb">
+    <a routerLink="/doctor/patients">Patients</a>
+    <span>/</span>
+    <span>Detail</span>
+  </div>
+
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  } @else if (row(); as p) {
+    <div class="card">
+      <h2 class="h2">{{ p.firstName }} {{ p.lastName }}</h2>
+      <p class="muted">Patient id {{ p.id }} · <code>GET /api/doctor/patients/{{ p.id }}</code></p>
+      <dl class="grid">
+        <div>
+          <dt>Gender</dt>
+          <dd>{{ p.gender ?? '—' }}</dd>
+        </div>
+        <div>
+          <dt>Date of birth</dt>
+          <dd>{{ p.dob ?? '—' }}</dd>
+        </div>
+        <div class="full">
+          <dt>Address</dt>
+          <dd>{{ p.address ?? '—' }}</dd>
+        </div>
+        <div>
+          <dt>Emergency contact</dt>
+          <dd>{{ p.emergencyContact ?? '—' }}</dd>
+        </div>
+        <div>
+          <dt>Insurance</dt>
+          <dd>{{ p.insuranceProvider ?? '—' }} {{ p.insuranceNumber ?? '' }}</dd>
+        </div>
+      </dl>
+      <a routerLink="/doctor/ehr" class="link">Document in EHR</a>
+    </div>
+  }
+</div>

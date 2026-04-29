@@ -1,0 +1,60 @@
+<div class="card page-shell">
+  <div class="page-header">
+    <h2 class="h2">Appointments</h2>
+    <a routerLink="/receptionist/book" class="fab-plus" aria-label="Book appointment">+</a>
+  </div>
+  @if (loading()) {
+    <p class="muted">Loading…</p>
+  } @else if (error()) {
+    <div class="banner banner--err">{{ error() }}</div>
+  } @else {
+    <div class="table-card">
+      <div class="filter-bar">
+        <input type="search" placeholder="Search by patient, doctor, or id" [value]="query()" (input)="setQuery($any($event.target).value)" />
+        <select [value]="status()" (change)="setStatus($any($event.target).value)">
+          <option value="ALL">All statuses</option>
+          @for (s of statuses(); track s) {
+            <option [value]="s">{{ s }}</option>
+          }
+        </select>
+      </div>
+      <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>When</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (a of sortedRows(); track a.id) {
+            <tr>
+              <td>{{ patientLabel(a.patientId) }}</td>
+              <td>{{ doctorLabel(a.doctorId) }}</td>
+              <td>{{ a.appointmentTime | date: 'medium' }}</td>
+              <td>{{ a.appointmentType ?? '—' }}</td>
+              <td><span class="pill">{{ a.status ?? '—' }}</span></td>
+              <td>
+                @if (a.status !== 'CANCELLED') {
+                  <button
+                    type="button"
+                    class="btn-cancel"
+                    [disabled]="cancellingId() === a.id"
+                    (click)="cancel(a.id)"
+                  >
+                    Cancel
+                  </button>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      </div>
+    </div>
+  }
+</div>

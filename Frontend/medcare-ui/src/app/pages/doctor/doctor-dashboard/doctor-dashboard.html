@@ -1,0 +1,62 @@
+<div class="dash page-shell">
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+
+  <section class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-card__label">Today (non-cancelled)</span>
+      <span class="stat-card__value">{{ todayRows().length }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">Upcoming total</span>
+      <span class="stat-card__value">{{ upcomingCount() }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">On calendar</span>
+      <span class="stat-card__value">{{ totalCount() }}</span>
+    </div>
+  </section>
+
+  <section class="chart-grid">
+    <article class="chart-card">
+      <h3>Appointment status mix</h3>
+      <div style="height: 240px">
+        <canvas baseChart [data]="statusChart()" [options]="chartOptions" [type]="'pie'"></canvas>
+      </div>
+    </article>
+    <article class="chart-card">
+      <h3>Upcoming schedule</h3>
+      <div style="height: 240px">
+        <canvas baseChart [data]="upcomingChart()" [options]="chartOptions" [type]="'bar'"></canvas>
+      </div>
+    </article>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <h2 class="h2">Today</h2>
+      @if (todayRows().length === 0) {
+        <p class="muted">No visits scheduled for today.</p>
+      }
+      <ul class="appts">
+        @for (a of todayRows(); track a.id) {
+          <li>
+            <span class="time">{{ formatTime(a.appointmentTime) }}</span>
+            <span class="who">{{ patientLabel(a.patientId) }}</span>
+            <span class="pill">{{ a.status ?? '—' }}</span>
+          </li>
+        }
+      </ul>
+      <a routerLink="/doctor/appointments" class="link">All appointments</a>
+    </section>
+    <section class="card">
+      <h2 class="h2">Quick links</h2>
+      <ul class="links">
+        <li><a routerLink="/doctor/patients">My patients</a></li>
+        <li><a routerLink="/doctor/ehr">EHR — prescriptions &amp; diagnoses</a></li>
+        <li><a routerLink="/doctor/profile">Your profile</a></li>
+      </ul>
+    </section>
+  </div>
+</div>

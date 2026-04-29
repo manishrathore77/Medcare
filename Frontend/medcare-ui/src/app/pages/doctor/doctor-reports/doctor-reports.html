@@ -1,0 +1,28 @@
+<div class="card">
+  <h2 class="h2">Lab &amp; clinical reports</h2>
+  @if (error()) {
+    <div class="banner banner--err">{{ error() }}</div>
+  }
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Patient ID</th>
+          <th>File</th>
+          <th>Uploaded</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (r of rows(); track r.id) {
+          <tr>
+            <td>{{ r.patientId ?? '—' }}</td>
+            <td>{{ r.fileName ?? 'report' }}</td>
+            <td>{{ r.uploadedAt ? (r.uploadedAt | date: 'medium') : '—' }}</td>
+            <td><button type="button" class="btn-link" (click)="download(r)">Download</button></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

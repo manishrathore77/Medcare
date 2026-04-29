@@ -1,0 +1,47 @@
+<div class="receptionist-shell">
+  <aside class="shell-rail" aria-label="Reception navigation">
+    <a class="shell-rail__brand" routerLink="/receptionist/dashboard" title="Medcare reception">+</a>
+    <nav class="rail-nav" aria-label="Reception modules">
+      <a
+        routerLink="/receptionist/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        title="Dashboard"
+        aria-label="Dashboard"
+      >
+        <span class="material-symbols-outlined">dashboard</span>
+      </a>
+      <a routerLink="/receptionist/register-patient" routerLinkActive="active" title="Register patient" aria-label="Register patient">
+        <span class="material-symbols-outlined">person_add</span>
+      </a>
+      <a routerLink="/receptionist/patients" routerLinkActive="active" title="Patients" aria-label="Patients">
+        <span class="material-symbols-outlined">groups</span>
+      </a>
+      <a routerLink="/receptionist/book" routerLinkActive="active" title="Book appointment" aria-label="Book appointment">
+        <span class="material-symbols-outlined">calendar_add_on</span>
+      </a>
+      <a routerLink="/receptionist/appointments" routerLinkActive="active" title="Appointments" aria-label="Appointments">
+        <span class="material-symbols-outlined">event_note</span>
+      </a>
+      <a routerLink="/receptionist/availability" routerLinkActive="active" title="Doctor availability" aria-label="Doctor availability">
+        <span class="material-symbols-outlined">calendar_clock</span>
+      </a>
+      <a routerLink="/receptionist/billing" routerLinkActive="active" title="Billing" aria-label="Billing">
+        <span class="material-symbols-outlined">payments</span>
+      </a>
+      <a routerLink="/receptionist/reports" routerLinkActive="active" title="Reports" aria-label="Reports">
+        <span class="material-symbols-outlined">lab_profile</span>
+      </a>
+      <a routerLink="/receptionist/profile" routerLinkActive="active" title="Profile" aria-label="Profile">
+        <span class="material-symbols-outlined">person</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="shell-main">
+    <app-top-bar [moduleName]="'Reception'" [title]="topTitle()" />
+    <div class="shell-content">
+      <router-outlet />
+    </div>
+  </div>
+</div>

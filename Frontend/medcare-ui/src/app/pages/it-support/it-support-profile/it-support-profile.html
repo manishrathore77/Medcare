@@ -1,0 +1,37 @@
+<div class="card">
+  <h2 class="h2">Profile</h2>
+  @if (loading()) {
+    <p class="muted">Loading…</p>
+  } @else if (error()) {
+    <div class="banner banner--err">{{ error() }}</div>
+    <dl class="grid">
+      <div>
+        <dt>Username</dt>
+        <dd>{{ auth.displayName() || '—' }}</dd>
+      </div>
+    </dl>
+  } @else {
+    <dl class="grid">
+      <div>
+        <dt>Username</dt>
+        <dd>{{ profile()?.username ?? auth.displayName() }}</dd>
+      </div>
+      <div>
+        <dt>Email</dt>
+        <dd>{{ profile()?.email ?? '—' }}</dd>
+      </div>
+      <div>
+        <dt>Role</dt>
+        <dd>{{ profile()?.role ?? 'IT_SUPPORT' }}</dd>
+      </div>
+      <div>
+        <dt>Phone</dt>
+        <dd>{{ profile()?.phone ?? '—' }}</dd>
+      </div>
+      <div>
+        <dt>Account</dt>
+        <dd>{{ profile()?.active === false ? 'Inactive' : 'Active' }}</dd>
+      </div>
+    </dl>
+  }
+</div>

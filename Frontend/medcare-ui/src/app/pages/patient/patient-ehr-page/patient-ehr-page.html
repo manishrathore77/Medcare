@@ -1,0 +1,27 @@
+<div class="card">
+  <h2 class="h2">Health records</h2>
+  <p class="lead">
+    Prescriptions from your visits (<code>GET /api/patient/prescriptions</code>). Full EMR (diagnoses, SOAP notes) stays
+    with clinical roles and can be layered in after the doctor module.
+  </p>
+
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+
+  @if (!error() && prescriptions().length === 0) {
+    <p class="muted">No prescriptions on file yet.</p>
+  }
+
+  @for (r of prescriptions(); track r.id) {
+    <article class="rec">
+      <h3>{{ r.medicineName ?? 'Medication' }}</h3>
+      <p class="meta">
+        @if (r.appointmentId) {
+          Visit #{{ r.appointmentId }}
+        }
+      </p>
+      <p>{{ r.dosage }} · {{ r.frequency }} · {{ r.duration }}</p>
+    </article>
+  }
+</div>

@@ -1,0 +1,44 @@
+<div class="admin-shell">
+  <aside class="shell-rail" aria-label="Admin navigation">
+    <a class="shell-rail__brand" routerLink="/admin/dashboard" title="Medcare admin">+</a>
+    <nav class="rail-nav" aria-label="Admin modules">
+      <a
+        routerLink="/admin/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        title="Dashboard"
+        aria-label="Dashboard"
+      >
+        <span class="material-symbols-outlined">dashboard</span>
+      </a>
+      <a routerLink="/admin/config/modules" routerLinkActive="active" title="Configuration hub" aria-label="Configuration hub">
+        <span class="material-symbols-outlined">tune</span>
+      </a>
+      <a routerLink="/admin/users" routerLinkActive="active" title="Users" aria-label="Users">
+        <span class="material-symbols-outlined">group</span>
+      </a>
+      <a routerLink="/admin/patients" routerLinkActive="active" title="Patients" aria-label="Patients">
+        <span class="material-symbols-outlined">personal_injury</span>
+      </a>
+      <a routerLink="/admin/doctors" routerLinkActive="active" title="Doctors" aria-label="Doctors">
+        <span class="material-symbols-outlined">stethoscope</span>
+      </a>
+      <a routerLink="/admin/clinics" routerLinkActive="active" title="Clinics" aria-label="Clinics">
+        <span class="material-symbols-outlined">domain</span>
+      </a>
+      <a routerLink="/admin/pharmacy" routerLinkActive="active" title="Pharmacy" aria-label="Pharmacy">
+        <span class="material-symbols-outlined">medication</span>
+      </a>
+      <a routerLink="/admin/profile" routerLinkActive="active" title="Profile" aria-label="Profile">
+        <span class="material-symbols-outlined">person</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="shell-main">
+    <app-top-bar [moduleName]="'Administration'" [title]="topTitle()" />
+    <div class="shell-content">
+      <router-outlet />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="page">
+  @if (loading()) {
+    <p class="muted">Loading patients, doctors, and clinics…</p>
+  }
+  @if (error()) {
+    <div class="banner banner--err">{{ error() }}</div>
+  }
+  @if (success()) {
+    <div class="banner banner--ok">{{ success() }} <a routerLink="/receptionist/appointments">View appointments</a></div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="card">
+    <h2 class="h2">Book for a patient</h2>
+
+    <label>
+      <span>Patient</span>
+      <select formControlName="patientId">
+        <option value="">Select…</option>
+        @for (p of patients(); track p.id) {
+          <option [value]="p.id">{{ p.firstName }} {{ p.lastName }} · #{{ p.id }}</option>
+        }
+      </select>
+    </label>
+
+    <label>
+      <span>Doctor</span>
+      <select formControlName="doctorId">
+        <option value="">Select…</option>
+        @for (d of doctors(); track d.id) {
+          <option [value]="d.id">{{ d.firstName }} {{ d.lastName }} — {{ d.specialty ?? 'Clinician' }}</option>
+        }
+      </select>
+    </label>
+
+    <label>
+      <span>Clinic</span>
+      <select formControlName="clinicId">
+        <option value="">Select…</option>
+        @for (c of clinics(); track c.id) {
+          <option [value]="c.id">{{ c.name }} @if (c.location) { · {{ c.location }} }</option>
+        }
+      </select>
+    </label>
+
+    <label>
+      <span>Date &amp; time</span>
+      <input type="datetime-local" formControlName="appointmentTime" />
+    </label>
+
+    <label>
+      <span>Visit type</span>
+      <select formControlName="appointmentType">
+        <option value="IN_CLINIC">In clinic</option>
+        <option value="VIDEO">Video</option>
+      </select>
+    </label>
+
+    <button type="submit" class="btn-primary" [disabled]="submitting() || form.invalid || loading()">
+      @if (submitting()) {
+        Booking…
+      } @else {
+        Confirm booking
+      }
+    </button>
+  </form>
+</div>

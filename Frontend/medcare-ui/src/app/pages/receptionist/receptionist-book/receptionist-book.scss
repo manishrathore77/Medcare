@@ -1,0 +1,84 @@
+.page {
+  max-width: 520px;
+}
+
+.muted {
+  color: var(--mc-text-muted);
+  font-size: 0.9rem;
+}
+
+.lead {
+  font-size: 0.875rem;
+  color: var(--mc-text-muted);
+  margin: 0 0 1rem;
+}
+
+.lead code {
+  font-size: 0.8rem;
+}
+
+.banner {
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.banner--err {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.banner--ok {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+}
+
+.card label span {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.35rem;
+  color: var(--mc-text-muted);
+}
+
+.card select,
+.card input {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid var(--mc-border);
+  font: inherit;
+  margin-bottom: 1rem;
+}
+
+.btn-primary {
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--mc-green);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--mc-border);
+  border-radius: var(--mc-radius);
+  padding: 1.25rem;
+  box-shadow: var(--mc-shadow);
+}
+
+.h2 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--mc-green-deep);
+}

@@ -1,0 +1,61 @@
+<div class="page">
+  <div class="breadcrumb">
+    <a routerLink="/admin/patients">Patients</a>
+    <span>/</span>
+    <span>{{ isCreate() ? 'New' : 'Edit' }}</span>
+  </div>
+
+  <h2 class="h2">{{ isCreate() ? 'Register patient' : 'Edit patient' }}</h2>
+
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="save()" class="card">
+    <div class="row">
+      <label>
+        <span>First name</span>
+        <input type="text" formControlName="firstName" autocomplete="given-name" />
+      </label>
+      <label>
+        <span>Last name</span>
+        <input type="text" formControlName="lastName" autocomplete="family-name" />
+      </label>
+    </div>
+    <div class="row">
+      <label>
+        <span>Gender</span>
+        <input type="text" formControlName="gender" placeholder="Optional" />
+      </label>
+      <label>
+        <span>Date of birth</span>
+        <input type="date" formControlName="dob" />
+      </label>
+    </div>
+    <label>
+      <span>Address</span>
+      <input type="text" formControlName="address" />
+    </label>
+    <label>
+      <span>Emergency contact</span>
+      <input type="text" formControlName="emergencyContact" />
+    </label>
+    <div class="row">
+      <label>
+        <span>Insurance provider</span>
+        <input type="text" formControlName="insuranceProvider" />
+      </label>
+      <label>
+        <span>Insurance number</span>
+        <input type="text" formControlName="insuranceNumber" />
+      </label>
+    </div>
+    <div class="actions">
+      <button type="submit" class="btn-primary" [disabled]="form.invalid">Save</button>
+      <a routerLink="/admin/patients" class="btn-ghost">Cancel</a>
+      @if (!isCreate()) {
+        <button type="button" class="btn-danger" (click)="remove()">Delete</button>
+      }
+    </div>
+  </form>
+</div>

@@ -1,0 +1,113 @@
+.layout {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 960px) {
+  .layout {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: start;
+  }
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--mc-border);
+  border-radius: var(--mc-radius);
+  padding: 1.25rem;
+}
+
+.lead {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: var(--mc-text-muted);
+}
+
+.lead code {
+  font-size: 0.8rem;
+}
+
+.banner {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.muted {
+  font-size: 0.9rem;
+  color: var(--mc-text-muted);
+}
+
+.name-link {
+  font-weight: 600;
+  color: var(--mc-text);
+  text-decoration: none;
+}
+
+.name-link:hover {
+  color: var(--mc-green-deep);
+}
+
+.link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--mc-green-deep);
+  text-decoration: none;
+}
+
+.h2 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--mc-green-deep);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.55rem 0.45rem;
+  border-bottom: 1px solid var(--mc-border);
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+tbody tr.on {
+  background: var(--mc-green-tint);
+}
+
+th {
+  color: var(--mc-text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.detail h3 {
+  margin: 0 0 0.35rem;
+}
+
+.meta {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--mc-text-muted);
+}
+
+.hint {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  color: var(--mc-text-muted);
+}

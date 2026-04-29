@@ -1,0 +1,50 @@
+<div class="page page-shell">
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+
+  <div class="page-header">
+    <h2 class="h2">Patients</h2>
+    <a routerLink="/admin/patients/create" class="fab-plus" aria-label="Register patient">+</a>
+  </div>
+
+  <div class="table-card">
+    <div class="filter-bar">
+      <input type="search" placeholder="Search by name or id" [value]="query()" (input)="setQuery($any($event.target).value)" />
+      <select [value]="gender()" (change)="setGender($any($event.target).value)">
+        <option value="ALL">All genders</option>
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
+        <option value="OTHER">Other</option>
+      </select>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Date of birth</th>
+            <th>Insurance</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of filteredRows(); track p.id) {
+            <tr>
+              <td>
+                <a class="link-cell" [routerLink]="['/admin/patients', p.id]">{{ p.firstName }} {{ p.lastName }}</a>
+              </td>
+              <td>{{ p.gender ?? '—' }}</td>
+              <td>{{ p.dob ?? '—' }}</td>
+              <td>{{ p.insuranceProvider ?? '—' }}</td>
+              <td>
+                <a class="link-muted" [routerLink]="['/admin/patients', p.id]">Edit</a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

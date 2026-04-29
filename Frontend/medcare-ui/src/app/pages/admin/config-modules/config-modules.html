@@ -1,0 +1,42 @@
+<h2 class="section-title">Module management</h2>
+<p class="section-desc">
+  Create / update / delete modules. With an API login (admin JWT), changes persist to the backend. Offline demo uses local
+  data only.
+</p>
+@if (rbac.apiError()) {
+  <div class="api-banner">{{ rbac.apiError() }}</div>
+}
+
+<div class="toolbar">
+  <input type="text" placeholder="Module name" [ngModel]="newName()" (ngModelChange)="newName.set($event)" />
+  <input type="text" placeholder="Description" [ngModel]="newDesc()" (ngModelChange)="newDesc.set($event)" />
+  <button type="button" class="btn-primary" (click)="add()">Add module</button>
+</div>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Active</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (m of rbac.modulesList(); track m.id) {
+      <tr>
+        <td><strong>{{ m.name }}</strong></td>
+        <td>{{ m.description }}</td>
+        <td>
+          <label class="switch">
+            <input type="checkbox" [checked]="m.active" (change)="toggle(m.id, m.active)" />
+            <span class="slider"></span>
+          </label>
+        </td>
+        <td class="actions">
+          <button type="button" class="link danger" (click)="remove(m.id)">Delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -1,0 +1,61 @@
+<div class="card">
+  <h2 class="h2">Profile</h2>
+  <p class="lead">
+    Signed in as <strong>{{ auth.displayName() || 'Patient' }}</strong>
+    @if (auth.patientId() != null) {
+      <span class="muted">· Patient id {{ auth.patientId() }}</span>
+    }
+  </p>
+
+  @if (loading()) {
+    <p class="muted">Loading…</p>
+  }
+  @if (error()) {
+    <div class="banner banner--err">{{ error() }}</div>
+  }
+  @if (saved()) {
+    <div class="banner banner--ok" role="status">Profile saved.</div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="save()" class="form">
+    <div class="row">
+      <label>
+        <span>First name</span>
+        <input type="text" formControlName="firstName" />
+      </label>
+      <label>
+        <span>Last name</span>
+        <input type="text" formControlName="lastName" />
+      </label>
+    </div>
+    <div class="row">
+      <label>
+        <span>Gender</span>
+        <input type="text" formControlName="gender" />
+      </label>
+      <label>
+        <span>Date of birth</span>
+        <input type="date" formControlName="dob" />
+      </label>
+    </div>
+    <label>
+      <span>Address</span>
+      <input type="text" formControlName="address" />
+    </label>
+    <label>
+      <span>Emergency contact</span>
+      <input type="text" formControlName="emergencyContact" />
+    </label>
+    <div class="row">
+      <label>
+        <span>Insurance provider</span>
+        <input type="text" formControlName="insuranceProvider" />
+      </label>
+      <label>
+        <span>Insurance number</span>
+        <input type="text" formControlName="insuranceNumber" />
+      </label>
+    </div>
+    <button type="submit" class="btn-primary" [disabled]="form.invalid">Save changes</button>
+  </form>
+</div>

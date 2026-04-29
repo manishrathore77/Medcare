@@ -1,0 +1,21 @@
+<article class="kpi" [class]="'kpi--' + accent()">
+  <div class="kpi__top">
+    <span class="kpi__label">{{ label() }}</span>
+    <span class="kpi__icon-wrap" aria-hidden="true">
+      <span class="material-symbols-outlined">{{ icon() }}</span>
+    </span>
+  </div>
+  <p class="kpi__value">{{ value() }}</p>
+  @if (hint()) {
+    <p class="kpi__hint">{{ hint() }}</p>
+  }
+  @if (trend()) {
+    <span
+      class="kpi__trend"
+      [class.kpi__trend--up]="trendPositive()"
+      [class.kpi__trend--down]="!trendPositive()"
+    >
+      {{ trend() }}
+    </span>
+  }
+</article>

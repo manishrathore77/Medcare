@@ -1,0 +1,100 @@
+<div class="page page-shell">
+  <h1>Administration</h1>
+
+  @if (loadErrors().length > 0 && !loading()) {
+    <div class="banner banner--warn">
+      Some metrics could not load: {{ loadErrors().join(', ') }}. You may be missing permission for that data.
+    </div>
+  }
+
+  @if (loading()) {
+    <p class="muted">Loading dashboard metrics…</p>
+  } @else {
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-card__label">Patients</span>
+        <span class="stat-card__value">{{ patientCount() }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__label">Doctors</span>
+        <span class="stat-card__value">{{ doctorCount() }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__label">User accounts</span>
+        <span class="stat-card__value">{{ userCount() }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__label">Clinics</span>
+        <span class="stat-card__value">{{ clinicCount() }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__label">Medicine SKUs</span>
+        <span class="stat-card__value">{{ medicineCount() }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__label">Appointments</span>
+        <span class="stat-card__value">{{ appointmentCount() }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__label">Pending invoices</span>
+        <span class="stat-card__value">{{ pendingInvoiceCount() }}</span>
+      </div>
+    </div>
+
+    <section class="chart-grid">
+      <article class="chart-card">
+        <h3>Appointments by status</h3>
+        <div style="height: 260px">
+          <canvas baseChart [data]="appointmentStatusChart()" [options]="chartOptions" [type]="'pie'"></canvas>
+        </div>
+      </article>
+      <article class="chart-card">
+        <h3>Appointments by type</h3>
+        <div style="height: 260px">
+          <canvas baseChart [data]="appointmentTypeChart()" [options]="chartOptions" [type]="'pie'"></canvas>
+        </div>
+      </article>
+      <article class="chart-card">
+        <h3>Appointments per day</h3>
+        <div style="height: 260px">
+          <canvas baseChart [data]="appointmentsPerDayChart()" [options]="chartOptions" [type]="'bar'"></canvas>
+        </div>
+      </article>
+      <article class="chart-card">
+        <h3>Invoices by status</h3>
+        <div style="height: 260px">
+          <canvas baseChart [data]="invoiceStatusChart()" [options]="chartOptions" [type]="'pie'"></canvas>
+        </div>
+      </article>
+    </section>
+  }
+
+  <h2 class="section-title">Modules</h2>
+  <div class="card-grid">
+    <a class="card" routerLink="/admin/patients">
+      <h2>Patients</h2>
+      <p>Directory, registration, and profile maintenance.</p>
+    </a>
+    <a class="card" routerLink="/admin/doctors">
+      <h2>Doctors</h2>
+      <p>Clinician records and specialty details.</p>
+    </a>
+    <a class="card" routerLink="/admin/clinics">
+      <h2>Clinics</h2>
+      <p>Locations, contact details, and availability context.</p>
+    </a>
+    <a class="card" routerLink="/admin/users">
+      <h2>Users</h2>
+      <p>Application accounts and role assignments.</p>
+    </a>
+    <a class="card" routerLink="/admin/pharmacy">
+      <h2>Pharmacy</h2>
+      <p>Medicines, stock levels, and reorder tracking.</p>
+    </a>
+    <a class="card card--accent" routerLink="/admin/config/modules">
+      <h2>Configuration hub</h2>
+      <p>Modules, permissions, and role configuration.</p>
+    </a>
+  </div>
+
+</div>

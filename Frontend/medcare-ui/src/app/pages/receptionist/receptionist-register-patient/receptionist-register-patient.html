@@ -1,0 +1,66 @@
+<div class="page">
+  <div class="card">
+    <h2 class="h2">Register patient</h2>
+
+    @if (createdId() != null) {
+      <div class="banner banner--ok" role="status">
+        Patient saved. ID: <strong>{{ createdId() }}</strong>
+        <a routerLink="/receptionist/patients" class="link-next">View directory</a>
+      </div>
+    }
+    @if (error()) {
+      <div class="banner banner--err" role="alert">{{ error() }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+      <div class="row">
+        <label>
+          <span>First name</span>
+          <input formControlName="firstName" type="text" autocomplete="given-name" />
+        </label>
+        <label>
+          <span>Last name</span>
+          <input formControlName="lastName" type="text" autocomplete="family-name" />
+        </label>
+      </div>
+      <details class="optional-block">
+        <summary>More fields (optional)</summary>
+        <div class="row">
+          <label>
+            <span>Gender</span>
+            <input formControlName="gender" type="text" />
+          </label>
+          <label>
+            <span>Date of birth</span>
+            <input formControlName="dob" type="date" />
+          </label>
+        </div>
+        <label>
+          <span>Address</span>
+          <input formControlName="address" type="text" />
+        </label>
+        <label>
+          <span>Emergency contact</span>
+          <input formControlName="emergencyContact" type="text" />
+        </label>
+        <div class="row">
+          <label>
+            <span>Insurance provider</span>
+            <input formControlName="insuranceProvider" type="text" />
+          </label>
+          <label>
+            <span>Insurance number</span>
+            <input formControlName="insuranceNumber" type="text" />
+          </label>
+        </div>
+      </details>
+      <button type="submit" class="btn-primary" [disabled]="submitting() || form.invalid">
+        @if (submitting()) {
+          Saving…
+        } @else {
+          Save patient
+        }
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+.card {
+  background: #fff;
+  border: 1px solid var(--mc-border);
+  border-radius: var(--mc-radius);
+  padding: 1.25rem;
+  max-width: 28rem;
+}
+
+.h2 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--mc-green-deep);
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+dt {
+  margin: 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--mc-text-muted);
+}
+
+dd {
+  margin: 0.25rem 0 0;
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--mc-text-muted);
+  font-size: 0.9rem;
+}
+
+.banner--err {
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}

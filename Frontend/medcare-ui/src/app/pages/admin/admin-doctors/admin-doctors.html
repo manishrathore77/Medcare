@@ -1,0 +1,52 @@
+<div class="page page-shell">
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+
+  <div class="page-header">
+    <h2 class="h2">Doctors</h2>
+    <a routerLink="/admin/doctors/create" class="fab-plus" aria-label="Add doctor">+</a>
+  </div>
+
+  <div class="table-card">
+    <div class="filter-bar">
+      <input type="search" placeholder="Search by name or id" [value]="query()" (input)="setQuery($any($event.target).value)" />
+      <select [value]="specialty()" (change)="setSpecialty($any($event.target).value)">
+        <option value="ALL">All specialties</option>
+        @for (s of specialties(); track s) {
+          <option [value]="s">{{ s }}</option>
+        }
+      </select>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Specialty</th>
+            <th>License</th>
+            <th>Contact</th>
+            <th>Active</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (d of filteredRows(); track d.id) {
+            <tr>
+              <td>
+                <a class="link-cell" [routerLink]="['/admin/doctors', d.id]">{{ d.firstName }} {{ d.lastName }}</a>
+              </td>
+              <td>{{ d.specialty ?? '—' }}</td>
+              <td>{{ d.licenseNumber ?? '—' }}</td>
+              <td>{{ d.contactNumber ?? d.email ?? '—' }}</td>
+              <td>{{ d.active === false ? 'No' : 'Yes' }}</td>
+              <td>
+                <a class="link-muted" [routerLink]="['/admin/doctors', d.id]">Edit</a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

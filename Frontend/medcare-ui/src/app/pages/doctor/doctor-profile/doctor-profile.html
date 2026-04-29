@@ -1,0 +1,51 @@
+<div class="card">
+  <h2 class="h2">Your profile</h2>
+  <p class="lead">
+    {{ auth.displayName() || 'Doctor' }}
+    @if (auth.doctorId() != null) {
+      <span class="muted">· Doctor id {{ auth.doctorId() }}</span>
+    }
+  </p>
+
+  @if (loading()) {
+    <p class="muted">Loading…</p>
+  }
+  @if (error()) {
+    <div class="banner banner--err">{{ error() }}</div>
+  }
+  @if (saved()) {
+    <div class="banner banner--ok" role="status">Saved.</div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="save()" class="form">
+    <div class="row">
+      <label>
+        <span>First name</span>
+        <input type="text" formControlName="firstName" />
+      </label>
+      <label>
+        <span>Last name</span>
+        <input type="text" formControlName="lastName" />
+      </label>
+    </div>
+    <label>
+      <span>Specialty</span>
+      <input type="text" formControlName="specialty" />
+    </label>
+    <div class="row">
+      <label>
+        <span>License number</span>
+        <input type="text" formControlName="licenseNumber" />
+      </label>
+      <label>
+        <span>Contact number</span>
+        <input type="tel" formControlName="contactNumber" />
+      </label>
+    </div>
+    <label>
+      <span>Email</span>
+      <input type="email" formControlName="email" />
+    </label>
+    <button type="submit" class="btn-primary" [disabled]="form.invalid">Save</button>
+  </form>
+</div>

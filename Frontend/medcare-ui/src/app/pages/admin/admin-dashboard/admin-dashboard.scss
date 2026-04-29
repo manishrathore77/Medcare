@@ -1,0 +1,150 @@
+.muted {
+  color: var(--mc-text-muted);
+  font-size: 0.9rem;
+}
+
+.banner {
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.banner--warn {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.stat {
+  background: var(--mc-white);
+  border: 1px solid var(--mc-border);
+  border-radius: var(--mc-radius-md);
+  padding: 0.85rem 1rem;
+  box-shadow: var(--mc-shadow-soft);
+}
+
+.stat__k {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--mc-text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.stat__v {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--mc-green-deep);
+}
+
+.section-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--mc-green-deep);
+}
+
+.page h1 {
+  margin: 0 0 0.35rem;
+  color: var(--mc-green-deep);
+}
+
+.lead {
+  max-width: 720px;
+  color: var(--mc-text-muted);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--mc-white);
+  border: 1px solid var(--mc-border);
+  border-radius: var(--mc-radius);
+  padding: 1.15rem;
+  box-shadow: var(--mc-shadow);
+  transition: transform 0.12s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: var(--mc-green);
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--mc-text-muted);
+  line-height: 1.45;
+}
+
+.card--accent {
+  border-color: var(--mc-green-mid);
+  background: linear-gradient(135deg, var(--mc-green-tint), var(--mc-white));
+}
+
+.engine {
+  background: var(--mc-white);
+  border: 1px solid var(--mc-border);
+  border-radius: var(--mc-radius);
+  padding: 1.25rem 1.5rem;
+}
+
+.engine h2 {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  color: var(--mc-green-deep);
+}
+
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.node {
+  background: var(--mc-green-bg);
+  border: 1px solid var(--mc-border);
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.node.ok {
+  background: var(--mc-green-tint);
+  color: var(--mc-green-deep);
+}
+
+.node.deny {
+  background: #fdecea;
+  color: var(--mc-error);
+}
+
+.arrow {
+  color: var(--mc-text-muted);
+  font-weight: 600;
+}

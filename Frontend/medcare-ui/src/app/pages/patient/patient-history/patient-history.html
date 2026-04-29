@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="head-row">
+    <h2 class="h2">Appointment history</h2>
+    <a routerLink="/patient/appointments/book" class="link">Book new</a>
+  </div>
+
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>When</th>
+          <th>Doctor</th>
+          <th>Clinic</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (a of rows(); track a.id) {
+          @let w = formatWhen(a.appointmentTime);
+          <tr>
+            <td>{{ w.date }}<br /><span class="sub">{{ w.time }}</span></td>
+            <td>{{ doctorLabel(a.doctorId) }}</td>
+            <td>{{ clinicLabel(a.clinicId) }}</td>
+            <td>{{ a.appointmentType ?? '—' }}</td>
+            <td><span class="pill">{{ a.status ?? '—' }}</span></td>
+            <td>
+              @if (a.status !== 'CANCELLED') {
+                <button type="button" class="btn-cancel" (click)="cancel(a)">Cancel</button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+.pharm-page {
+  max-width: 960px;
+}
+
+.banner {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  color: #664d03;
+  padding: 0.75rem 1rem;
+  border-radius: var(--mc-radius-md, 10px);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.kpi-row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin-bottom: 1.5rem;
+}
+
+.tiles {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.tile {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.1rem 1.15rem;
+  background: var(--mc-surface, #fff);
+  border: 1px solid var(--mc-border-soft, #e2e8f0);
+  border-radius: var(--mc-radius-md, 10px);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--mc-shadow-soft);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.tile:hover {
+  border-color: var(--mc-green-mid);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.tile .material-symbols-outlined {
+  font-size: 1.75rem;
+  color: var(--mc-green);
+}
+
+.tile strong {
+  display: block;
+  font-size: 1rem;
+  color: var(--mc-green-deep);
+}
+
+.tile span:last-child {
+  font-size: 0.85rem;
+  color: var(--mc-text-muted);
+}

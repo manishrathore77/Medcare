@@ -1,0 +1,107 @@
+@import '../config-modules/config-modules.scss';
+
+.role-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.role-bar label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.role-bar select {
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--mc-border);
+  font: inherit;
+  min-width: 200px;
+}
+
+.meta {
+  font-size: 0.85rem;
+  color: var(--mc-text-muted);
+  flex: 1;
+}
+
+.subhead {
+  margin: 1.25rem 0 0.65rem;
+  font-size: 0.95rem;
+  color: var(--mc-green-deep);
+}
+
+.module-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  background: var(--mc-green-bg);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  border: 1px solid var(--mc-border);
+}
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tree-mod {
+  border: 1px solid var(--mc-border);
+  border-radius: 8px;
+  padding: 0.35rem 0.75rem;
+  background: #fafdfb;
+}
+
+.tree-mod summary {
+  font-weight: 700;
+  color: var(--mc-green-deep);
+  cursor: pointer;
+}
+
+.tree-sub {
+  margin: 0.5rem 0 0.5rem 1rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--mc-green-soft);
+}
+
+.tree-sub-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.tree-sub ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.perm-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  margin-bottom: 0.25rem;
+}
+
+.perm-row code {
+  font-size: 0.72rem;
+  color: var(--mc-blue-link);
+  background: rgba(29, 107, 159, 0.08);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}

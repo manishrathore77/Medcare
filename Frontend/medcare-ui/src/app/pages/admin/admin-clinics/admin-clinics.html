@@ -1,0 +1,42 @@
+<div class="page page-shell">
+  @if (error()) {
+    <div class="banner">{{ error() }}</div>
+  }
+
+  <div class="page-header">
+    <h2 class="h2">Clinics</h2>
+    <a routerLink="/admin/clinics/create" class="fab-plus" aria-label="Add clinic">+</a>
+  </div>
+
+  <div class="table-card">
+    <div class="filter-bar">
+      <input type="search" placeholder="Search by name or id" [value]="query()" (input)="setQuery($any($event.target).value)" />
+    </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Contact</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (c of filteredRows(); track c.id) {
+            <tr>
+              <td>
+                <a class="link-cell" [routerLink]="['/admin/clinics', c.id]">{{ c.name }}</a>
+              </td>
+              <td>{{ c.location ?? '—' }}</td>
+              <td>{{ c.contactNumber ?? '—' }}</td>
+              <td>
+                <a class="link-muted" [routerLink]="['/admin/clinics', c.id]">Edit</a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

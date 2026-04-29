@@ -1,0 +1,79 @@
+.card {
+  background: #fff;
+  border: 1px solid var(--mc-border);
+  border-radius: var(--mc-radius);
+  padding: 1.25rem;
+}
+
+.h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--mc-green-deep);
+}
+
+.lead {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: var(--mc-text-muted);
+}
+
+.lead code {
+  font-size: 0.8rem;
+}
+
+.banner {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid var(--mc-border);
+}
+
+th {
+  color: var(--mc-text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--mc-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.meta {
+  font-size: 0.85rem;
+  color: var(--mc-text-muted);
+}
+
+.date {
+  font-size: 0.75rem;
+  color: var(--mc-text-muted);
+}
